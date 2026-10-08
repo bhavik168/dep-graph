@@ -1,0 +1,406 @@
+{
+  "_about": "Held-out labels, made independently from the catalog only (no access to generator code or output).",
+  "prefix": "GITHUB_",
+  "cases": [
+    {
+      "consumer": "REMOVE_TEAM_MEMBERSHIP",
+      "param": "team_slug",
+      "must": [
+        [
+          "LIST_TEAMS",
+          "GET_ORGANIZATION_TEAMS"
+        ]
+      ],
+      "ok": [
+        "LIST_TEAMS_FOR_THE_AUTHENTICATED_USER",
+        "CREATE_A_TEAM",
+        "LIST_REPOSITORY_TEAMS",
+        "LIST_TEAMS_THAT_ARE_ASSIGNED_TO_AN_ORGANIZATION_ROLE",
+        "GET_TEAMS_WITH_ACCESS_TO_THE_PROTECTED_BRANCH",
+        "GET_ACCESS_RESTRICTIONS"
+      ],
+      "note": "Org team listings return Team.slug; other team-returning tools are less direct."
+    },
+    {
+      "consumer": "LIST_REACTIONS_FOR_A_TEAM_DISCUSSION_COMMENT",
+      "param": "team_slug",
+      "must": [
+        [
+          "LIST_TEAMS",
+          "GET_ORGANIZATION_TEAMS"
+        ]
+      ],
+      "ok": [
+        "LIST_TEAMS_FOR_THE_AUTHENTICATED_USER",
+        "CREATE_A_TEAM",
+        "LIST_REPOSITORY_TEAMS",
+        "LIST_TEAMS_THAT_ARE_ASSIGNED_TO_AN_ORGANIZATION_ROLE",
+        "GET_TEAMS_WITH_ACCESS_TO_THE_PROTECTED_BRANCH",
+        "GET_ACCESS_RESTRICTIONS"
+      ],
+      "note": "Same team slug; discussions live under an org team."
+    },
+    {
+      "consumer": "LIST_SUB_ISSUES",
+      "param": "issue_number",
+      "must": [
+        "LIST_REPOSITORY_ISSUES"
+      ],
+      "ok": [
+        "SEARCH_ISSUES",
+        "SEARCH_ISSUES_AND_PULL_REQUESTS",
+        "CREATE_AN_ISSUE",
+        "LIST_ISSUES_ASSIGNED_TO_THE_AUTHENTICATED_USER",
+        "LIST_ORG_ISSUES_FOR_THE_AUTHENTICATED_USER",
+        "LIST_ISSUE_EVENTS_FOR_A_REPOSITORY",
+        "ADD_SUB_ISSUE"
+      ],
+      "note": "Parent issue number comes from repo issue listing; search/create also return number."
+    },
+    {
+      "consumer": "RESTORE_PACKAGE_VERSION_FOR_AN_ORGANIZATION",
+      "param": "package_type",
+      "must": [],
+      "ok": [],
+      "note": "Enum choice; every tool that outputs package_type also requires it."
+    },
+    {
+      "consumer": "ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_VARIABLE",
+      "param": "name",
+      "must": [
+        "LIST_ORGANIZATION_VARIABLES"
+      ],
+      "ok": [
+        "LIST_REPOSITORY_ORGANIZATION_VARIABLES"
+      ],
+      "note": "Org Actions variable names; repo-scoped listing of org variables also works."
+    },
+    {
+      "consumer": "GET_A_PACKAGE_VERSION_FOR_A_USER",
+      "param": "package_type",
+      "must": [],
+      "ok": [],
+      "note": "Enum choice; producers of package_type all require package_type (circular)."
+    },
+    {
+      "consumer": "GET_REPOSITORY_GRAPH_QL",
+      "param": "name",
+      "must": [
+        [
+          "LIST_REPOSITORIES_FOR_A_USER",
+          "LIST_ORGANIZATION_REPOSITORIES",
+          "LIST_REPOSITORIES_FOR_THE_AUTHENTICATED_USER",
+          "LIST_REPOSITORIES"
+        ]
+      ],
+      "ok": [
+        "SEARCH_REPOSITORIES",
+        "FIND_REPOSITORIES",
+        "LIST_PUBLIC_REPOSITORIES",
+        "LIST_REPOSITORIES_ACCESSIBLE_TO_THE_APP_INSTALLATION",
+        "LIST_TEAM_REPOSITORIES",
+        "LIST_REPOSITORIES_STARRED_BY_THE_AUTHENTICATED_USER"
+      ],
+      "note": "Repo name under the given owner (user or org) from repo listings; search also returns names."
+    },
+    {
+      "consumer": "SET_USER_ACCESS_RESTRICTIONS",
+      "param": "users",
+      "must": [
+        [
+          "LIST_REPOSITORY_COLLABORATORS",
+          "LIST_ASSIGNEES"
+        ]
+      ],
+      "ok": [
+        "GET_USERS_WITH_ACCESS_TO_THE_PROTECTED_BRANCH",
+        "GET_ACCESS_RESTRICTIONS",
+        "LIST_ORGANIZATION_MEMBERS",
+        "LIST_REPOSITORY_CONTRIBUTORS",
+        "SEARCH_USERS",
+        "GET_THE_AUTHENTICATED_USER"
+      ],
+      "note": "Logins of users with write access: collaborators/assignees; current restriction lists and org members also give logins."
+    },
+    {
+      "consumer": "DELETE_DISCUSSION",
+      "param": "team_slug",
+      "must": [
+        [
+          "LIST_TEAMS",
+          "GET_ORGANIZATION_TEAMS"
+        ]
+      ],
+      "ok": [
+        "LIST_TEAMS_FOR_THE_AUTHENTICATED_USER",
+        "CREATE_A_TEAM",
+        "LIST_REPOSITORY_TEAMS",
+        "LIST_TEAMS_THAT_ARE_ASSIGNED_TO_AN_ORGANIZATION_ROLE",
+        "GET_TEAMS_WITH_ACCESS_TO_THE_PROTECTED_BRANCH",
+        "GET_ACCESS_RESTRICTIONS"
+      ],
+      "note": "Team discussion is scoped by org team slug."
+    },
+    {
+      "consumer": "GET_USER_BY_ID",
+      "param": "account_id",
+      "must": [
+        [
+          "GET_A_USER",
+          "SEARCH_USERS",
+          "LIST_USERS"
+        ]
+      ],
+      "ok": [
+        "GET_THE_AUTHENTICATED_USER",
+        "LIST_ORGANIZATION_MEMBERS",
+        "LIST_REPOSITORY_COLLABORATORS",
+        "LIST_FOLLOWERS_OF_A_USER",
+        "LIST_FOLLOWERS_OF_THE_AUTHENTICATED_USER",
+        "LIST_TEAM_MEMBERS",
+        "LIST_ASSIGNEES"
+      ],
+      "note": "Numeric user id appears on user objects from lookup/search/list-users."
+    },
+    {
+      "consumer": "DISMISS_A_REVIEW_FOR_A_PULL_REQUEST",
+      "param": "message",
+      "must": [],
+      "ok": [],
+      "note": "Free-form dismissal reason."
+    },
+    {
+      "consumer": "GET_RULES_FOR_A_BRANCH",
+      "param": "branch",
+      "must": [
+        "LIST_BRANCHES"
+      ],
+      "ok": [
+        "GET_A_REPOSITORY",
+        "LIST_BRANCHES_FOR_HEAD_COMMIT"
+      ],
+      "note": "Branch names from LIST_BRANCHES; default_branch from repo."
+    },
+    {
+      "consumer": "CREATE_REACTION_FOR_A_RELEASE",
+      "param": "release_id",
+      "must": [
+        "LIST_RELEASES"
+      ],
+      "ok": [
+        "GET_THE_LATEST_RELEASE",
+        "GET_A_RELEASE_BY_TAG_NAME",
+        "CREATE_A_RELEASE"
+      ],
+      "note": "Release.id from release listing/lookup/create."
+    },
+    {
+      "consumer": "UPDATE_USER_LIST",
+      "param": "list_id",
+      "must": [],
+      "ok": [
+        "CREATE_USER_LIST"
+      ],
+      "note": "No tool lists a user's lists; only CREATE_USER_LIST returns a list node id."
+    },
+    {
+      "consumer": "UPLOAD_RELEASE_ASSET",
+      "param": "release_id",
+      "must": [
+        "LIST_RELEASES"
+      ],
+      "ok": [
+        "GET_THE_LATEST_RELEASE",
+        "GET_A_RELEASE_BY_TAG_NAME",
+        "CREATE_A_RELEASE"
+      ],
+      "note": "Release.id; creating a release then uploading is also common."
+    },
+    {
+      "consumer": "UPDATE_A_LABEL",
+      "param": "name",
+      "must": [
+        "LIST_LABELS_FOR_A_REPOSITORY"
+      ],
+      "ok": [
+        "LIST_LABELS_FOR_AN_ISSUE",
+        "SEARCH_LABELS",
+        "LIST_LABELS_FOR_ISSUES_IN_A_MILESTONE",
+        "ADD_LABELS_TO_AN_ISSUE",
+        "SET_LABELS_FOR_AN_ISSUE"
+      ],
+      "note": "Existing repo label names."
+    },
+    {
+      "consumer": "CREATE_DRAFT_ITEM_FOR_USER_PROJECT",
+      "param": "project_number",
+      "must": [
+        [
+          "GET_USERS_PROJECTS_V2",
+          "LIST_USER_PROJECTS"
+        ]
+      ],
+      "ok": [
+        "CREATE_A_USER_PROJECT"
+      ],
+      "note": "User Projects V2 number from user project listings."
+    },
+    {
+      "consumer": "APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST",
+      "param": "run_id",
+      "must": [
+        "LIST_WORKFLOW_RUNS_FOR_A_REPOSITORY"
+      ],
+      "ok": [
+        "LIST_WORKFLOW_RUNS_FOR_A_WORKFLOW",
+        "LIST_ARTIFACTS_FOR_A_REPOSITORY",
+        "GET_WORKFLOW_RUN_JOB"
+      ],
+      "note": "Workflow run id (status action_required) from repo run listing."
+    },
+    {
+      "consumer": "DELETE_ORGANIZATION_SECRET",
+      "param": "secret_name",
+      "must": [
+        "LIST_ORGANIZATION_SECRETS"
+      ],
+      "ok": [
+        "LIST_REPOSITORY_ORGANIZATION_SECRETS"
+      ],
+      "note": "Org Actions secret; Dependabot/Codespaces org secret lists are different entities."
+    },
+    {
+      "consumer": "GET_A_SELF_HOSTED_RUNNER_FOR_AN_ORGANIZATION",
+      "param": "runner_id",
+      "must": [
+        "LIST_SELF_HOSTED_RUNNERS_FOR_AN_ORGANIZATION"
+      ],
+      "ok": [
+        "CONFIGURE_JIT_RUNNER_FOR_ORG"
+      ],
+      "note": "Org-level runner id; repo runner listings are a different scope."
+    },
+    {
+      "consumer": "REVIEW_DEPLOYMENT_PROTECTION_RULES",
+      "param": "state",
+      "must": [],
+      "ok": [],
+      "note": "Enum decision (approved/rejected)."
+    },
+    {
+      "consumer": "GET_CODESPACE",
+      "param": "codespace_name",
+      "must": [
+        "LIST_CODESPACES_FOR_THE_AUTHENTICATED_USER"
+      ],
+      "ok": [
+        "LIST_REPO_CODESPACES",
+        "CREATE_A_CODESPACE_FOR_THE_AUTHENTICATED_USER",
+        "CREATE_A_CODESPACE_IN_A_REPOSITORY",
+        "CREATE_A_CODESPACE_FROM_A_PULL_REQUEST",
+        "LIST_CODESPACES_FOR_THE_ORGANIZATION",
+        "LIST_CODESPACES_FOR_A_USER_IN_ORGANIZATION"
+      ],
+      "note": "Codespace.name from the user's codespace listing or create."
+    },
+    {
+      "consumer": "ADD_RUNNER_LABELS",
+      "param": "runner_id",
+      "must": [
+        "LIST_SELF_HOSTED_RUNNERS_FOR_A_REPOSITORY"
+      ],
+      "ok": [
+        "CREATE_JIT_RUNNER_CONFIG"
+      ],
+      "note": "Repo-level self-hosted runner id."
+    },
+    {
+      "consumer": "CREATE_INFERENCE_CHAT_COMPLETIONS",
+      "param": "messages",
+      "must": [],
+      "ok": [],
+      "note": "User-authored chat messages."
+    },
+    {
+      "consumer": "LIST_ASSIGNMENTS_FOR_A_CLASSROOM",
+      "param": "classroom_id",
+      "must": [
+        "LIST_CLASSROOMS"
+      ],
+      "ok": [
+        "GET_AN_ASSIGNMENT"
+      ],
+      "note": "Classroom.id from classroom listing; an assignment also embeds its classroom id."
+    },
+    {
+      "consumer": "DOWNLOAD_A_REPOSITORY_ARCHIVE_TAR",
+      "param": "ref",
+      "must": [
+        [
+          "LIST_BRANCHES",
+          "LIST_REPOSITORY_TAGS",
+          "LIST_COMMITS"
+        ]
+      ],
+      "ok": [
+        "GET_A_REPOSITORY",
+        "LIST_RELEASES",
+        "GET_THE_LATEST_RELEASE",
+        "SEARCH_COMMITS",
+        "LIST_BRANCHES_FOR_HEAD_COMMIT"
+      ],
+      "note": "Any branch name, tag name, or commit SHA works."
+    },
+    {
+      "consumer": "PUBLISH_SPONSORS_TIER_GRAPH_QL",
+      "param": "tierId",
+      "must": [
+        "CREATE_SPONSORS_TIER"
+      ],
+      "ok": [],
+      "note": "Draft tier node id only comes from creating the tier (created as draft by default)."
+    },
+    {
+      "consumer": "LIST_MATCHING_REFERENCES",
+      "param": "ref",
+      "must": [],
+      "ok": [
+        "LIST_BRANCHES",
+        "LIST_REPOSITORY_TAGS"
+      ],
+      "note": "Prefix filter like heads/ or tags/ usually user-chosen; branch/tag names can seed it."
+    },
+    {
+      "consumer": "UPDATE_A_TEAM",
+      "param": "team_slug",
+      "must": [
+        [
+          "LIST_TEAMS",
+          "GET_ORGANIZATION_TEAMS"
+        ]
+      ],
+      "ok": [
+        "LIST_TEAMS_FOR_THE_AUTHENTICATED_USER",
+        "CREATE_A_TEAM",
+        "LIST_REPOSITORY_TEAMS",
+        "LIST_TEAMS_THAT_ARE_ASSIGNED_TO_AN_ORGANIZATION_ROLE",
+        "GET_TEAMS_WITH_ACCESS_TO_THE_PROTECTED_BRANCH",
+        "GET_ACCESS_RESTRICTIONS"
+      ],
+      "note": "Team slug from org team listings."
+    },
+    {
+      "consumer": "DELETE_WORKFLOW_RUN_LOGS",
+      "param": "run_id",
+      "must": [
+        "LIST_WORKFLOW_RUNS_FOR_A_REPOSITORY"
+      ],
+      "ok": [
+        "LIST_WORKFLOW_RUNS_FOR_A_WORKFLOW",
+        "LIST_ARTIFACTS_FOR_A_REPOSITORY",
+        "GET_WORKFLOW_RUN_JOB"
+      ],
+      "note": "Workflow run id from run listings."
+    }
+  ]
+}

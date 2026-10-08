@@ -1,0 +1,156 @@
+{
+  "about": "30 (tool, required input) pairs drawn at random (seed 20261007) from the GitHub catalog, excluding scoping params (owner/repo/org/username) and tools in the dev set. Labeled independently in github_heldout.json.",
+  "prefix": "GITHUB_",
+  "inputs": [
+    {
+      "consumer": "REMOVE_TEAM_MEMBERSHIP",
+      "param": "team_slug",
+      "description": "The slug of the team name."
+    },
+    {
+      "consumer": "LIST_REACTIONS_FOR_A_TEAM_DISCUSSION_COMMENT",
+      "param": "team_slug",
+      "description": "URL-friendly slug of the team name."
+    },
+    {
+      "consumer": "LIST_SUB_ISSUES",
+      "param": "issue_number",
+      "description": "The number that identifies the issue."
+    },
+    {
+      "consumer": "RESTORE_PACKAGE_VERSION_FOR_AN_ORGANIZATION",
+      "param": "package_type",
+      "description": "The type of package. Supported types include \"npm\", \"maven\", \"rubygems\", \"docker\", \"nuget\", and \"container\". Packages in GitHub's Gradle registry use the `maven` type. Docker images in GitHub's Container registry (`ghcr.io`) use the `container` type. The `docker` type can be used for images previously in GitHub's Docker registry (`docker.pkg.github.com`), even if migrated to the Container registry."
+    },
+    {
+      "consumer": "ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_VARIABLE",
+      "param": "name",
+      "description": "Name of the existing organization-level GitHub Actions variable."
+    },
+    {
+      "consumer": "GET_A_PACKAGE_VERSION_FOR_A_USER",
+      "param": "package_type",
+      "description": "The type of package. 'maven' is used for Gradle packages. 'container' is for images in GitHub's Container registry (ghcr.io). 'docker' can be used for images previously in GitHub's Docker registry (docker.pkg.github.com)."
+    },
+    {
+      "consumer": "GET_REPOSITORY_GRAPH_QL",
+      "param": "name",
+      "description": "The name of the repository."
+    },
+    {
+      "consumer": "SET_USER_ACCESS_RESTRICTIONS",
+      "param": "users",
+      "description": "The list of user logins (usernames) to grant push access to the protected branch. This REPLACES the existing list of users. Users must have write access to the repository. Pass an empty list [] to remove all user restrictions. The combined total of users, apps, and teams is limited to 100 items."
+    },
+    {
+      "consumer": "DELETE_DISCUSSION",
+      "param": "team_slug",
+      "description": "URL-friendly version (slug) of the team name."
+    },
+    {
+      "consumer": "GET_USER_BY_ID",
+      "param": "account_id",
+      "description": "The unique numeric identifier of the GitHub user account to retrieve."
+    },
+    {
+      "consumer": "DISMISS_A_REVIEW_FOR_A_PULL_REQUEST",
+      "param": "message",
+      "description": "The reason for dismissing the review. This is a required field."
+    },
+    {
+      "consumer": "GET_RULES_FOR_A_BRANCH",
+      "param": "branch",
+      "description": "The name of the branch. Wildcard characters are not supported for this parameter; to use wildcards, refer to the GitHub GraphQL API."
+    },
+    {
+      "consumer": "CREATE_REACTION_FOR_A_RELEASE",
+      "param": "release_id",
+      "description": "The unique identifier (ID) of the release to add a reaction to."
+    },
+    {
+      "consumer": "UPDATE_USER_LIST",
+      "param": "list_id",
+      "description": "The unique ID of the user list to update. This is the GraphQL node ID (e.g., 'UL_kwDOCNqc1s4AbuJ8')."
+    },
+    {
+      "consumer": "UPLOAD_RELEASE_ASSET",
+      "param": "release_id",
+      "description": "Unique identifier of the release. The release must have a valid upload URL (i.e., not already finalized without one). Asset size must not exceed 2 GB."
+    },
+    {
+      "consumer": "UPDATE_A_LABEL",
+      "param": "name",
+      "description": "Current name of the label to be updated; value is not case-sensitive."
+    },
+    {
+      "consumer": "CREATE_DRAFT_ITEM_FOR_USER_PROJECT",
+      "param": "project_number",
+      "description": "The project's number."
+    },
+    {
+      "consumer": "APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST",
+      "param": "run_id",
+      "description": "The unique identifier of the workflow run requiring approval."
+    },
+    {
+      "consumer": "DELETE_ORGANIZATION_SECRET",
+      "param": "secret_name",
+      "description": "The name of the secret to be deleted."
+    },
+    {
+      "consumer": "GET_A_SELF_HOSTED_RUNNER_FOR_AN_ORGANIZATION",
+      "param": "runner_id",
+      "description": "Unique identifier (ID) of the self-hosted runner."
+    },
+    {
+      "consumer": "REVIEW_DEPLOYMENT_PROTECTION_RULES",
+      "param": "state",
+      "description": "The review decision: 'approved' to allow the deployment or 'rejected' to block it."
+    },
+    {
+      "consumer": "GET_CODESPACE",
+      "param": "codespace_name",
+      "description": "Unique name or identifier of the codespace, typically auto-generated upon creation."
+    },
+    {
+      "consumer": "ADD_RUNNER_LABELS",
+      "param": "runner_id",
+      "description": "Unique ID of the self-hosted runner."
+    },
+    {
+      "consumer": "CREATE_INFERENCE_CHAT_COMPLETIONS",
+      "param": "messages",
+      "description": "The collection of context messages associated with this chat completion request. Each message must have a role (assistant, developer, system, or user) and content."
+    },
+    {
+      "consumer": "LIST_ASSIGNMENTS_FOR_A_CLASSROOM",
+      "param": "classroom_id",
+      "description": "The unique identifier of the classroom for which assignments are to be listed."
+    },
+    {
+      "consumer": "DOWNLOAD_A_REPOSITORY_ARCHIVE_TAR",
+      "param": "ref",
+      "description": "A Git reference (e.g., branch name, tag name, or commit SHA) that points to the specific version of the repository content to be downloaded as a tarball archive. For example, `main` for the main branch, `v1.0.0` for a tag, or a full commit SHA."
+    },
+    {
+      "consumer": "PUBLISH_SPONSORS_TIER_GRAPH_QL",
+      "param": "tierId",
+      "description": "The global Relay ID of the draft sponsors tier to publish. Must be a tier that is currently in draft status."
+    },
+    {
+      "consumer": "LIST_MATCHING_REFERENCES",
+      "param": "ref",
+      "description": "Partial Git reference path (e.g., 'heads/main', 'tags/v1.0') to match from the beginning of the reference name; do not include the `refs/` prefix."
+    },
+    {
+      "consumer": "UPDATE_A_TEAM",
+      "param": "team_slug",
+      "description": "The team's unique slug identifier (typically URL-friendly version of team name). This is a required path parameter."
+    },
+    {
+      "consumer": "DELETE_WORKFLOW_RUN_LOGS",
+      "param": "run_id",
+      "description": "The unique identifier of the workflow run."
+    }
+  ]
+}
