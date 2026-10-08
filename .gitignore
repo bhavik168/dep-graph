@@ -1,7 +1,9 @@
 node_modules/
 .env*
+!.env.example
 selfcheck_graph.json
-dependency_graph.json
+.cache/*
+!.cache/llm.json
 
 .litmus/
 .claude/
